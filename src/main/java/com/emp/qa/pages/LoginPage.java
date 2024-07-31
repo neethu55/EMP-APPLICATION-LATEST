@@ -30,18 +30,20 @@ public class LoginPage extends TestBase
 		}
 		//This is pointing to the current class objs
 		//Actions:
-		public String validateLoginPageTitle()
-		{
-			return driver.getTitle();
-		}
+		public void signin() throws InterruptedException
+		    {
+			Thread.sleep(1000);
+			signInBtn.click();
+			Thread.sleep(1000);
+			}
 		
-		public HomePage login(String un, String pwd){
+		public JobDetailsPage login(String un, String pwd) throws InterruptedException{
 			username.sendKeys(un);
 			password.sendKeys(pwd);
 			loginBtn.click();
 			    	//JavascriptExecutor js = (JavascriptExecutor)driver;
 			    	//js.executeScript("arguments[0].click();", loginBtn);
-			    	
-			return new HomePage();
+			Thread.sleep(1000);
+			return new JobDetailsPage();
 		}
 }

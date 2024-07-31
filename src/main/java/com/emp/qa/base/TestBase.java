@@ -27,7 +27,7 @@ public class TestBase
 		{
 			prop = new Properties();
 			//Reading the properties
-			FileInputStream ip = new FileInputStream(System.getProperty("E:\\1WORKSPACE\\pjtname\\src\\main\\java\\com\\emp\\qa\\config\\config.properties"));
+			FileInputStream ip = new FileInputStream("E:\\1WORKSPACE\\pjtname\\src\\main\\java\\com\\emp\\qa\\config\\config.properties");
 			prop.load(ip);
 		} catch (FileNotFoundException e) 
 		{
@@ -38,28 +38,28 @@ public class TestBase
 		}
 	}
 	
-	public static void initialization()
+	public static void initialization() throws InterruptedException
 	{
 		String browserName = prop.getProperty("browser");
 		
 		if(browserName.equals("chrome"))
 		{
-			WebDriverManager.chromedriver().clearDriverCache().setup();
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		}
 		else if(browserName.equals("FF"))
 		{
 			
-			System.setProperty("webdriver.gecko.driver", "/Users/naveenkhunteta/Documents/SeleniumServer/geckodriver");	
+			WebDriverManager.chromedriver().setup();
 			driver = new FirefoxDriver(); 
 		}
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
-		
+		Thread.sleep(3000);
 		driver.get(prop.getProperty("url"));
+		Thread.sleep(5000);
 	}
 	
 	
