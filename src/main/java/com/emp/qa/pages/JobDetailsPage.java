@@ -21,7 +21,6 @@ public class JobDetailsPage extends TestBase
 	@FindBy(id="react-select-5-option-4")
 	WebElement subject;
 	
-	
 	@FindBy(xpath="//div[4]//div[1]//div[2]//div[1]//div[1]//div[1]//div[2]")
 	WebElement campusMenu;
 	
@@ -38,27 +37,40 @@ public class JobDetailsPage extends TestBase
 	}
 	
 	public void clickOnPostMenu() throws InterruptedException{
+		Thread.sleep(1000);
 		postMenu.click();
 		Thread.sleep(1000);
 		post.click();//selection of post- Teaching
+		Thread.sleep(2000);
 	}
 	
 	public void clickOnSubjectMenu() throws InterruptedException{
+		Thread.sleep(1000);
 		subjectMenu.click();
 		Thread.sleep(1000);
 		subject.click();//selection of subject - Botany
+		Thread.sleep(2000);
 	}
 	
 	public void clickOnCampusMenu() throws InterruptedException{
+		Thread.sleep(1000);
 		campusMenu.click();
 		Thread.sleep(1000);
 		campus.click();//selection of campus - Nodal center
+		Thread.sleep(2000);
 	}
 	
-	public PersonalDetailsPage SaveJobDetails(){
+	public PersonalDetailsPage SaveJobDetails() throws InterruptedException{
 		SaveJobDetail.click();
+		Thread.sleep(3000);
 		return new PersonalDetailsPage();
-	}
+	}//page chaining in POM. Clicking on save should return next landing page object
 	
-	
+	//Reason for launching browser for each test cases - If executing many test cases in same browser without closing, browser will be exhausted causing cache/cookies/mem issues
+       
+    //ie; test cases should be independent/test cases should be separated -- independent with each other
+   	//before each test case -- launch the browser and login
+   	//@test -- execute test case
+   	//after each test case -- close the browser
+
 }
