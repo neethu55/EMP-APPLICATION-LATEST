@@ -1,6 +1,7 @@
 package com.emp.qa.pages;
 
 import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -30,26 +31,47 @@ public class JobDetailsPage extends TestBase
 	@FindBy(xpath="//button[normalize-space()='Next']")
 	WebElement SaveJobDetail;
 	
+	@FindBy(xpath="//button[normalize-space()='Apply Here']")
+	WebElement applyBtn;
+	
 	//Initializing the Page Objects:
 	public JobDetailsPage()
 	{
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void clickOnPostMenu() throws InterruptedException{
+	
+	 public boolean verifyLinkPresent() 
+	 {
+	         try {
+	             return applyBtn.isDisplayed();
+	             } catch (Exception e) 
+	             {
+	             return false;
+	             }
+	 }
+	 
+	 public void clickOnApplyLink() throws InterruptedException
+		{
+			Thread.sleep(1000);
+			applyBtn.click();
+			Thread.sleep(1000);
+		}
+	
+	public void clickOnPostMenu() throws InterruptedException
+	{
 		Thread.sleep(1000);
 		postMenu.click();
 		Thread.sleep(1000);
 		post.click();//selection of post- Teaching
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 	}
-	
 	public void clickOnSubjectMenu() throws InterruptedException{
 		Thread.sleep(1000);
 		subjectMenu.click();
 		Thread.sleep(1000);
 		subject.click();//selection of subject - Botany
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 	}
 	
 	public void clickOnCampusMenu() throws InterruptedException{

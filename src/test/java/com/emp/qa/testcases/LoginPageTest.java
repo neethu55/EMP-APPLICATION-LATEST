@@ -15,7 +15,7 @@ public class LoginPageTest extends TestBase
 	LoginPage loginPage;
 	JobDetailsPage jobPage;
 	
-	//constructor calls super class(tstbase) constructor. For initializing properties also
+	//constructor calls super class(TestBase) constructor. For initializing properties also
 	public LoginPageTest()
 	{
 		super();

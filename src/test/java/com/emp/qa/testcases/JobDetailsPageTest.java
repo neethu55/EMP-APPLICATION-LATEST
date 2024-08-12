@@ -1,5 +1,8 @@
 package com.emp.qa.testcases;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod; 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,20 +21,29 @@ public class JobDetailsPageTest extends TestBase
 	public JobDetailsPageTest()
 	{
 		super();
-	}//constructor. pptys will be initialized
+	}//constructor. properties will be initialized
 	
 	@BeforeMethod
 	public void setUp() throws InterruptedException
 	{
 		initialization(); //driver will be initialized
-		Thread.sleep(3000);
 		loginPage = new LoginPage();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		loginPage.signin();
 		jobPage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		Thread.sleep(3000);
+		Thread.sleep(2000);
+		 if (jobPage.verifyLinkPresent()) 
+		 {
+			 System.out.println("The link is present on the page. User has applied already before");
+			 jobPage.clickOnApplyLink();
+
+		 } 
+
+	else  {
+	           System.out.println("The link is not present on the page. It is newly registered login");
+	       }	 
+		 
 	}
-	
 	
 	@Test(priority=1)
 	public void clickOnPostMenuTest() throws InterruptedException
@@ -43,7 +55,7 @@ public class JobDetailsPageTest extends TestBase
 	public void clickOnSubjectMenuTest() throws InterruptedException
 	{
 		jobPage.clickOnPostMenu();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		jobPage.clickOnSubjectMenu();
 	}
 	
