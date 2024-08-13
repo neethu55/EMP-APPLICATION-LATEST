@@ -1,5 +1,6 @@
 package com.emp.qa.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.support.FindBy;
@@ -12,9 +13,9 @@ public class JobDetailsPage extends TestBase
 
 	@FindBy(xpath="//div[@class='col-md-9 removePaddingLeft form-area-container']//div[2]//div[1]//div[2]//div[1]//div[1]//div[1]//div[2]")
 	WebElement postMenu;
-	
+/*
 	@FindBy(id="react-select-2-option-2")
-	WebElement post; 
+	WebElement post; */
 	
 	@FindBy(xpath="//div[3]//div[1]//div[2]//div[1]//div[1]//div[1]//div[2]")
 	WebElement subjectMenu;
@@ -58,13 +59,15 @@ public class JobDetailsPage extends TestBase
 			Thread.sleep(1000);
 		}
 	
-	public void clickOnPostMenu() throws InterruptedException
+	public void clickOnPostMenu(String post) throws InterruptedException
 	{
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		postMenu.click();
-		Thread.sleep(1000);
-		post.click();//selection of post- Teaching
-		Thread.sleep(1000);
+		Thread.sleep(3000);
+		/*post.click();//selection of post- Teaching*/
+		WebElement selected_post=driver.findElement(By.id(post));
+		selected_post.click();
+		Thread.sleep(3000);
 	}
 	public void clickOnSubjectMenu() throws InterruptedException{
 		Thread.sleep(1000);
@@ -86,7 +89,9 @@ public class JobDetailsPage extends TestBase
 		SaveJobDetail.click();
 		Thread.sleep(3000);
 		return new PersonalDetailsPage();
-	}//page chaining in POM. Clicking on save should return next landing page object
+	}
+	//page chaining in POM. Clicking on save should return next landing page object
+
 	
 	//Reason for launching browser for each test cases - If executing many test cases in same browser without closing, browser will be exhausted causing cache/cookies/mem issues
        

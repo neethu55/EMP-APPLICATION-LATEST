@@ -5,19 +5,23 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod; 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.emp.qa.base.TestBase;
 import com.emp.qa.pages.JobDetailsPage;
 import com.emp.qa.pages.LoginPage;
 import com.emp.qa.pages.PersonalDetailsPage;
+import com.emp.qa.util.TestUtil;
 
 public class JobDetailsPageTest extends TestBase
 {
 	LoginPage loginPage;
 	JobDetailsPage jobPage;
 	PersonalDetailsPage personaldetailspage;
-	
+	String sheetName = "postmenu";
+
+
 	public JobDetailsPageTest()
 	{
 		super();
@@ -45,30 +49,18 @@ public class JobDetailsPageTest extends TestBase
 		 
 	}
 	
-	@Test(priority=1)
-	public void clickOnPostMenuTest() throws InterruptedException
+	@DataProvider
+	public Object[][] getCareersTestData()
 	{
-		jobPage.clickOnPostMenu();
+		Object data[][] = TestUtil.getTestData(sheetName);
+		return data;
 	}
 	
-	@Test(priority=2)
-	public void clickOnSubjectMenuTest() throws InterruptedException
+	//Data driven approach
+	@Test(priority=1, dataProvider="getCareersTestData")
+	public void clickOnMenuTest(String post) throws InterruptedException
 	{
-		jobPage.clickOnPostMenu();
-		Thread.sleep(1000);
-		jobPage.clickOnSubjectMenu();
-	}
-	
-	@Test(priority=3)
-	public void clickOnCampusMenuTest() throws InterruptedException
-	{
-		jobPage.clickOnCampusMenu();
-	}
-	
-	@Test(priority=4)
-	public void SaveJobDetailsTest() throws InterruptedException
-	{
-		jobPage.clickOnPostMenu();
+		jobPage.clickOnPostMenu(post);
 		Thread.sleep(1000);
 		jobPage.clickOnSubjectMenu();
 		Thread.sleep(1000);
@@ -77,7 +69,6 @@ public class JobDetailsPageTest extends TestBase
 		jobPage.SaveJobDetails();
 		Thread.sleep(1000);
 	}
-	
 	
 	@AfterMethod
 	public void tearDown()

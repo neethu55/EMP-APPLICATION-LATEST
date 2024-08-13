@@ -5,11 +5,9 @@
     <classes>
       <class name="com.emp.qa.testcases.JobDetailsPageTest">
         <methods>
+          <include name="clickOnPostMenuTest"/>
           <include name="setUp"/>
           <include name="tearDown"/>
-          <include name="SaveJobDetailsTest"/>
-          <include name="clickOnCampusMenuTest"/>
-          <include name="clickOnSubjectMenuTest"/>
         </methods>
       </class> <!-- com.emp.qa.testcases.JobDetailsPageTest -->
     </classes>
