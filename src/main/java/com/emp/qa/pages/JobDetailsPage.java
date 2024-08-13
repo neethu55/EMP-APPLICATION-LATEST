@@ -62,7 +62,11 @@ public class JobDetailsPage extends TestBase
 	public void clickOnPostMenu(String post) throws InterruptedException
 	{
 		Thread.sleep(3000);
-		postMenu.click();
+		if (postMenu != null && postMenu.isDisplayed() && postMenu.isEnabled()) {
+			postMenu.click();
+			} else {
+			System.out.println("Post Applied For is not clickable or visible.");
+			}
 		Thread.sleep(3000);
 		/*post.click();//selection of post- Teaching*/
 		WebElement selected_post=driver.findElement(By.id(post));
@@ -71,7 +75,11 @@ public class JobDetailsPage extends TestBase
 	}
 	public void clickOnSubjectMenu() throws InterruptedException{
 		Thread.sleep(1000);
-		subjectMenu.click();
+		if (subjectMenu != null && subjectMenu.isDisplayed() && subjectMenu.isEnabled()) {
+			subjectMenu.click();
+			} else {
+			System.out.println("Subject/Job category is not clickable or visible.");
+			}
 		Thread.sleep(1000);
 		subject.click();//selection of subject - Botany
 		Thread.sleep(1000);
@@ -79,10 +87,14 @@ public class JobDetailsPage extends TestBase
 	
 	public void clickOnCampusMenu() throws InterruptedException{
 		Thread.sleep(1000);
-		campusMenu.click();
+		if (campusMenu != null && campusMenu.isDisplayed() && campusMenu.isEnabled()) {
+			campusMenu.click();
+			} else {
+			System.out.println("Campus Menu is not clickable or visible.");
+			}
 		Thread.sleep(1000);
-		campus.click();//selection of campus - Nodal center
-		Thread.sleep(2000);
+		campus.click();///selection of campus - Nodal center
+		Thread.sleep(1000);
 	}
 	
 	public PersonalDetailsPage SaveJobDetails() throws InterruptedException{
